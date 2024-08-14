@@ -18,9 +18,9 @@ def main():
         @client.on(events.NewMessage(outgoing=False))
         async def handler(event: events.NewMessage.Event):
             logging.info(event)
-            logging.info(event.message)
-            logging.info(event.message.id)
-            logging.info(event.message.text)
+            logging.info(event.chat_id)
+            logging.info(f"event.chat_id == config.GROUP_ID = {event.chat_id == config.GROUP_ID}")
+
             if event.chat_id == config.GROUP_ID and event.message.text:
                 await bot.send_message(config.ADMIN_ID, event.message.text)
 
