@@ -17,9 +17,12 @@ def main():
     with TelegramClient('resender', config.API_ID, config.API_HASH) as client:
         @client.on(events.NewMessage(outgoing=False))
         async def handler(event: events.NewMessage.Event):
+            logging.info(event)
+            logging.info(event.message)
+            logging.info(event.message.id)
+            logging.info(event.message.text)
             if event.chat_id == config.GROUP_ID and event.message.text:
                 await bot.send_message(config.ADMIN_ID, event.message.text)
-                logging.info(event.message)
 
         client.run_until_disconnected()
 
