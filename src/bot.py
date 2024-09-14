@@ -24,7 +24,7 @@ def main():
             logging.info(event.chat_id)
             logging.info(f"event.chat_id == config.GROUP_ID = {event.chat_id == config.GROUP_ID}")
 
-            if event.chat_id == config.GROUP_ID and event.message.text:
+            if event.chat_id in config.GROUP_ID and event.message.text:
                 for admin in config.ADMINS_ID:
                     await bot.send_message(admin, event.message.text)
 
